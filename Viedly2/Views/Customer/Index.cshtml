@@ -1,0 +1,35 @@
+﻿
+@*view for model*@
+@model IEnumerable<Viedly2.Models.Customers>
+
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer</h2>
+
+@if (!Model.Any()) {
+    <p>we don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover" >
+        <thead>
+            <tr>
+                <th>
+                    Customer
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                    <tr>
+                        <td>@Html.ActionLink(customer.Name, "Details", "Customer",
+                           new { id = customer.Id }, null)</td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+}
